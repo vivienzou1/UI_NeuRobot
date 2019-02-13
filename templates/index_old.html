@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Swanky Chatbox</title>
+  <link href='https://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+
+      <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+
+</head>
+
+<body>
+
+  <div class='container' ng-cloak ng-app="chatApp">
+  <h1>NeuRobot Chatbox</h1>
+  <div class='chatbox' ng-controller="MessageCtrl as chatMessage">
+    <div class='chatbox__user-list'>
+      <div class='chatbox__end' style='text-align:center'>
+          <input name="end_session" type='submit' value='  End Session  ' style='background:rgba(255, 255, 255, 0.25);color:white'></input>
+          <br><br><br><br><br><br><br>
+          <br><br><br><br>
+        <!-- <form method="POST"> -->
+          <input name="send_question" type='submit' value='  Send Question  ' style='background:rgba(255, 255, 255, 0.25);color:white;text-align:center'></input>
+        <!--</form> -->
+      </div>
+    </div>
+    <div class="chatbox__messages" ng-repeat="message in messages">
+      <div class="chatbox__messages__user-message">
+        <div class="chatbox__messages__user-message--ind-message">
+          <p class="name">{{message_Name}}</p>
+          <br/>
+          <p class="message">{{message_Message}}</p>
+        </div>
+      </div>
+    </div>
+    <form method="POST">
+      <input type="text" name="text_input" placeholder="Enter your question">
+      <!-- <input name="send_question" type='submit' value='  Send Question  ' style='background:rgba(255, 255, 255, 0.25);color:white;text-align:center'></input> -->
+    </form>
+
+  </div>
+
+
+
+</body>
+
+</html>
