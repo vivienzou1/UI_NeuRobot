@@ -17,7 +17,7 @@
         <div class="message_holder"></div>
       </div>
     </div>
-    <form action="" method="POST">
+    <form action="" method="POST" id="myHeader">
       <input class="message" name="text_input" type="text" placeholder="Enter your question">
       </input>
     </form>
@@ -69,7 +69,20 @@
       }
     )
     </script>
+    <script>
+      window.onscroll = function() {myFunction()};
 
+      var header = document.getElementById("myHeader");
+      var sticky = header.offsetTop;
+
+      function myFunction() {
+        if (window.pageYOffset > sticky) {
+          header.classList.add("sticky");
+        } else {
+          header.classList.remove("sticky");
+        }
+      }
+  </script>
   </div>
 </body>
 </html>

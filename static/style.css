@@ -7,7 +7,7 @@
 
 html, body {
   background: linear-gradient(200deg, #056DFF, #056DFF);
-  overflow: hidden;
+  overflow: auto;
 }
 
 .container {
@@ -31,6 +31,7 @@ html, body {
   border-radius: 0.2em;
   position: relative;
   box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.1);
+  overflow: auto;
 }
 .chatbox__messages:nth-of-type(odd) .chatbox__messages__user-message--ind-message {
   float: right;
@@ -133,15 +134,20 @@ html, body {
 }
 .chatbox form input {
   background: rgba(255, 255, 255, 0.03);
-  position: absolute;
+  /* position: absolute;
   bottom: 0;
-  left: 0;
+  left: 0; */
   border: none;
   width: 65%;
   padding: 1.2em;
   outline: none;
   color: rgba(255, 255, 255, 0.9);
   font-weight: 300;
+}
+.sticky {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 ::-webkit-input-placeholder {
