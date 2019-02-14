@@ -9,7 +9,6 @@ html, body {
   background: linear-gradient(200deg, #056DFF, #056DFF);
   overflow: auto;
 }
-
 .container {
   display: flex;
   justify-content: center;
@@ -17,6 +16,7 @@ html, body {
   flex-direction: column;
   height: 100vh;
   width: 100vw;
+  overflow: auto;
 }
 .container h1 {
   margin: 0.5em auto;
@@ -36,85 +36,61 @@ html, body {
 .chatbox__messages:nth-of-type(odd) .chatbox__messages__user-message--ind-message {
   float: right;
 }
-.chatbox__messages:nth-of-type(odd) .chatbox__messages__user-message--ind-message:after {
-  content: '';
-  position: absolute;
-  margin: -1.5em -17.06em;
-  width: 0;
-  height: 0;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  border-right: 10px solid rgba(255, 255, 255, 0.2);
-}
 .chatbox__messages:nth-of-type(even) .chatbox__messages__user-message--ind-message {
   float: left;
-}
-.chatbox__messages:nth-of-type(even) .chatbox__messages__user-message--ind-message:after {
-  content: '';
-  position: absolute;
-  margin: -1.5em 1.87em;
-  width: 0;
-  height: 0;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  border-left: 10px solid rgba(255, 255, 255, 0.2);
 }
 .chatbox__messages__user-message {
   width: 450px;
 }
-.chatbox__messages__user-message--ind-message {
+.chatbox__messages__user-message--ind-message_right {
   background: rgba(255, 255, 255, 0.2);
   padding: 1em 0;
   height: auto;
-  width: 65%;
+  width: 55%;
   border-radius: 5px;
   margin: 2em 1em;
   overflow: auto;
   margin: 0 2.8em;
   color: #FFF;
   font-size: 1em;
-
+  float: right;
 }
-.chatbox__messages__user-message--ind-message > p.name {
+.chatbox__messages__user-message--ind-message_right > p.name {
   color: #FFF;
   font-size: 1em;
 }
-.chatbox__messages__user-message--ind-message > p.message {
+.chatbox__messages__user-message--ind-message_right > p.message {
   color: #FFF;
   font-size: 0.7em;
   margin: 0 2.8em;
 }
-.chatbox__user-list {
-  background: rgba(255, 255, 255, 0.1);
-  width: 35%;
-  height: 100%;
-  float: right;
-  border-top-right-radius: 0.2em;
-  border-bottom-right-radius: 0.2em;
+.chatbox__messages__user-message--ind-message_left {
+  background: rgba(237, 237, 114, 0.35);
+  padding: 1em 0;
+  height: auto;
+  width: 55%;
+  border-radius: 5px;
+  margin: 2em 1em;
+  overflow: auto;
+  margin: 0 2.8em;
+  color: #FFF
+  font-size: 1em;
+  float: left;
 }
-.chatbox__user-list h1 {
-  background: rgba(255, 255, 255, 0.05);
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 0.9em;
-  padding: 1em;
-  margin: 0;
-  font-weight: 1300;
-  text-align: center;
+.chatbox__messages__user-message--ind-message_left > p.name {
+  color: #FFF;
+  font-size: 1em;
+}
+.chatbox__messages__user-message--ind-message_left > p.message {
+  color: #FFF;
+  font-size: 0.7em;
+  margin: 0 2.8em;
 }
 .chatbox__user, .chatbox__user--active, .chatbox__user--busy, .chatbox__user--away {
   width: 0.5em;
   height: 0.5em;
   border-radius: 100%;
   margin: 1em 0.7em;
-}
-.chatbox__user--active {
-  background: rgba(23, 190, 187, 0.8);
-}
-.chatbox__user--busy {
-  background: rgba(252, 100, 113, 0.8);
-}
-.chatbox__user--away {
-  background: rgba(255, 253, 130, 0.8);
 }
 .chatbox__end {
   position: relative;
@@ -134,9 +110,10 @@ html, body {
 }
 .chatbox form input {
   background: rgba(255, 255, 255, 0.03);
-  /* position: absolute;
-  bottom: 0;
-  left: 0; */
+  position: fixed;
+  width: 600px;
+  bottom: 0px;
+  left: 10;
   border: none;
   width: 65%;
   padding: 1.2em;
@@ -144,12 +121,6 @@ html, body {
   color: rgba(255, 255, 255, 0.9);
   font-weight: 300;
 }
-.sticky {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
-
 ::-webkit-input-placeholder {
   color: rgba(255, 255, 255, 0.9);
 }

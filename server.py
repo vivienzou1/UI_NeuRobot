@@ -10,7 +10,6 @@ import pickle
 from datetime import datetime
 from flask import Flask, request, render_template, redirect, url_for
 from werkzeug import secure_filename
-import uuid
 from flask_socketio import SocketIO
 
 app = Flask(__name__)

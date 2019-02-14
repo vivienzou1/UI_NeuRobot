@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Swanky Chatbox</title>
+  <title>NeuRobot Chatbox</title>
   <link href='https://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
@@ -54,22 +54,22 @@
       } )
       socket.on( 'my response', function( msg ) {
         console.log( msg )
-        if( typeof msg.user_name !== 'undefined' ) {
+        if( msg.user_name == '' ) {
           $( 'h3' ).remove()
-          $( 'div.message_holder' ).append( '<div class="chatbox__messages__user-message--ind-message"><b style="color: #FFF;font-size: 1em;">'+msg.user_name+'</b>'+'<b style="margin-left: 2.8px;color: #FFF;font-size: 0.7em;">'+msg.message+'</b>'+'</div>' )
+          $( 'div.message_holder' ).append( '<div class="chatbox__messages__user-message--ind-message_right"><b style="color: #FFF;font-size: 1em;">'+msg.user_name+'</b>'+'<b style="margin-left: 2.8px;color: #FFF;font-size: 0.7em;">'+msg.message+'</b>'+'</div>' )
         }
-        if( typeof msg.user_name == 'Visual Assistant' ) {
+        if( msg.user_name == 'Visual Assistant' ) {
           $( 'h3' ).remove()
-          $( 'div.message_holder' ).append( '<div class="chatbox__messages__user-message--ind-message"><b style="color: #000;font-size: 1em;">'+msg.user_name+'</b>'+'<br>'+'<b style="margin-left: 2.8px;color: #FFF;font-size: 0.7em;">'+msg.message+'</b>'+'</div>' )
+          $( 'div.message_holder' ).append( '<div class="chatbox__messages__user-message--ind-message_left"><b style="color: #FFF;font-size: 1em;">'+msg.user_name+'</b>'+'<br>'+'<b style="margin-left: 2.8px;color: #FFF;font-size: 0.7em;">'+msg.message+'</b>'+'</div>' )
         }
-        if( typeof msg.user_name == 'Related Questions:' ) {
+        if( msg.user_name == 'Related Questions:' ) {
           $( 'h3' ).remove()
-          $( 'div.message_holder' ).append( '<div class="chatbox__messages__user-message--ind-message"><b style="color: #000;font-size: 1em;">'+msg.user_name+'</b>'+'<br>'+'<b style="margin-left: 2.8px;color: #FFF;font-size: 0.7em;">'+msg.message+'</b>'+'</div>' )
+          $( 'div.message_holder' ).append( '<div class="chatbox__messages__user-message--ind-message_left"><b style="color: #FFF;font-size: 1em;">'+msg.user_name+'</b>'+'<br>'+'<b style="margin-left: 2.8px;color: #FFF;font-size: 0.7em;">'+msg.message+'</b>'+'</div>' )
         }
       }
     )
     </script>
-    <script>
+    <!-- <script>
       window.onscroll = function() {myFunction()};
 
       var header = document.getElementById("myHeader");
@@ -82,7 +82,7 @@
           header.classList.remove("sticky");
         }
       }
-  </script>
+  </script> -->
   </div>
 </body>
 </html>
