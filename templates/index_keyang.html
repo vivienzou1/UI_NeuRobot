@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Swanky Chatbox</title>
+  <link href='https://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+
+<body>
+  <div class='container' ng-cloak ng-app="chatApp">
+  <h1>NeuRobot Chatbox</h1>
+  <div class='chatbox' ng-controller="MessageCtrl as chatMessage">
+    <div class="chatbox__messages" ng-repeat="message in messages">
+      <div class="chatbox__messages__user-message">
+        <div class="message_holder"></div>
+      </div>
+    </div>
+    <form action="" method="POST" id="myHeader">
+      <input class="message" name="text_input" type="text" placeholder="Enter your question">
+      </input>
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+    <script type="text/javascript">
+      var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+      socket.on( 'connect', function() {
+        socket.emit( 'my event', {
+          data: 'User Connected'
+        } )
+        var form = $( 'form' ).on( 'submit', function( e ) {
+          e.preventDefault()
+          let user_name = $( 'input.username' ).val()
+          let user_input = $( 'input.message' ).val()
+          // let recommend = $( 'input.recommend' ).val()
+          // let related = $( 'input.related' ).val()
+          socket.emit( 'my event', {
+            user_name : '',
+            message : user_input
+          } )
+          // socket.emit( 'my event', {
+          //   user_name : 'Visual Assistant',
+          //   // json from Keyang
+          //   // message : 'you can post a review for any item. Make sure you are logged-in to your account.'
+          //     message : recommend
+          // } )
+          // socket.emit( 'my event', {
+          //   user_name : 'Related Questions:',
+          //   // json from Keyang
+          //   // message : 'What is your return policy? How can I track my order?'
+          //     message: related
+          // } )
+
+          $( 'input.message' ).val( '' ).focus()
+        } )
+      } )
+
+
+      socket.on( 'my response', function( msg ) {
+        console.log( msg )
+        if( msg.user_name == '' ) {
+          $( 'h3' ).remove()
+          $( 'div.message_holder' ).append( '<div class="chatbox__messages__user-message--ind-message_right">' +
+              '<b style="color: #FFF;font-size: 1em;">'+msg.user_name+'</b>'+'' +
+              '<b style="margin-left: 2.8px;color: #FFF;font-size: 0.7em;">'
+              +msg.message+'</b>'+'</div>' )
+        }
+        if( msg.user_name == 'Visual Assistant:' ) {
+          $( 'h3' ).remove()
+          $( 'div.message_holder' ).append(
+              '<div class="chatbox__messages__user-message--ind-message_left">' +
+              '<b style="color: #000;font-size: 1em;">'+msg.user_name+'</b>' +
+              ''+'<br>'+'<b style="margin-left: 2.8px;color: #FFF;font-size: 0.7em;">'
+              +msg.message+'</b>'+'</div>' )
+        }
+        if( msg.user_name == 'Related Questions:' ) {
+          $( 'h3' ).remove()
+          $( 'div.message_holder' ).append( '<div class="chatbox__messages__user-message--ind-message_left"><b style="color: #000;font-size: 1em;">'+msg.user_name+'</b>'+'<br>'+'<b style="margin-left: 2.8px;color: #FFF;font-size: 0.7em;">'+msg.message+'</b>'+'</div>' )
+        }
+      }
+    )
+    </script>
+  </div>
+</body>
+</html>
